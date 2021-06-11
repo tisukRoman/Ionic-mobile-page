@@ -1,0 +1,38 @@
+.SubscribePanel{
+    margin-top: 1.5em;
+    border: 1px solid grey;
+    border-radius: 0.2em;
+    height: 8em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    box-shadow: 1px 2px 5px grey;
+}
+
+.info_container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.date{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+}
+.date_title{
+    text-align: center;
+}
+.date_text{
+    text-align: center;
+}
+
+
+.button{
+    background-color: #33BDE4;
+    font-size: small;
+    text-align: center;
+    line-height: 2em;
+    color: #FFFFFF;
+    margin: 0 1em;
+    border-radius: 0.2em;
+}
