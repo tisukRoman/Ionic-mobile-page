@@ -2,7 +2,7 @@
     height: 10em;
     margin-bottom: 0.5em;
     width: 90%;
-    border: 1px solid black;
+    border: 1px solid grey;
     border-radius: 0.5em;
     box-shadow: 1px 2px 3px 1px rgb(207, 204, 204);
     display: flex;
@@ -23,7 +23,7 @@
 .photo_container{
     height: 6em;
     width: 50%;
-    border: 1px solid black;
+    border: 1px solid grey;
     border-radius: 0.5em;
 }
 .text_container{

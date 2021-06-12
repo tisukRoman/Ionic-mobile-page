@@ -4,3 +4,11 @@
     font-size: x-large;
     color: grey;
 }
+
+.timeBlockActive{
+    height: 2em;
+    line-height: 1.5em;
+    font-size: xx-large;
+    font-weight: 700;
+    color: #33BDE4;
+}

@@ -1,6 +1,19 @@
 .DateBlock_container{
-    border: 1px solid black;
+    border: 1px solid grey;
     border-radius: 0.5em;
+    box-shadow: 1px 2px 3px 1px rgb(207, 204, 204);
+    height: 6em;
+    width: 6em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.DateBlock_container_active{
+    border: 2px solid #33BDE4;
+    background-color: #F0FBFF;
+    border-radius: 0.5em;
+    box-shadow: 1px 2px 3px 1px #F0FBFF;
     height: 6em;
     width: 6em;
     display: flex;
@@ -9,5 +22,21 @@
 }
 
 .day_of_week{
+    font-size: 1.5rem;    
+    font-weight: 300;
+}
+.day_of_week_active{
+    font-size: 1.5rem;    
+    font-weight: 400;
+    color: #33BDE4;
+}
+
+.day_of_date{
     font-size: 1.5rem;
+    font-weight: 900;
+}
+.day_of_date_active{
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #33BDE4;
 }
