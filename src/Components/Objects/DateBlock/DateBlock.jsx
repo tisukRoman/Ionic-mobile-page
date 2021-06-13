@@ -6,14 +6,12 @@ import s from './DateBlock.module.css'
 export const DateBlock = ({ dayWeek, dayDate, id, month }) => {
 
     const dispatch = useDispatch();
-
-    const selectedDate = useSelector(state => state.SubscribeReducer.selectedDate);
-
-    const pressHandle = () => {
+    const selectedDate = useSelector(state => state.SubscribeReducer.selectedDate); 
+    const pressHandle = () => { // User selects Date
         dispatch(setSelectedDate({id, dayWeek, dayDate, month}));
     }
 
-    if (id === selectedDate.id) {
+    if (id === selectedDate.id) { // if selected
         return <>
             <div className={s.DateBlock_container_active}>
                 <div className={s.day_of_week_active}>
@@ -25,8 +23,8 @@ export const DateBlock = ({ dayWeek, dayDate, id, month }) => {
             </div>
         </>
     }
-
-    return <>
+    // if not selected
+    return <> 
         <div className={s.DateBlock_container} onClick={pressHandle}>
             <div className={s.day_of_week}>
                 {dayWeek}

@@ -13,3 +13,23 @@ export const setSelectedTime = payload => ({ // User chooses consult Time
 export const clearSelectedData = () => ({ // Must be called after scrolling 'people' array
     type: sub.CLEAR_SELECTED_DATA
 })
+
+export const setCurrentPage = payload => ({ // User scrolls cards of doctors
+    type: sub.SETS_CURRENT_PAGE,
+    payload
+})
+
+
+// ------------// Functions below must set data from firebase
+export const setFetchedDoctor = (id) => ({
+    type: sub.SETS_CURRENT_PAGE,
+    id
+})
+export const setFetchedDate = (id) => ({
+    type: sub.SETS_CURRENT_PAGE,
+    id
+})
+export const setFetchedTime = (id) => ({
+    type: sub.SETS_CURRENT_PAGE,
+    id
+})

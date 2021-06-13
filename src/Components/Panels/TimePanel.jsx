@@ -1,20 +1,20 @@
 import React from 'react'
-import { IonSlides, IonSlide } from '@ionic/react'
+import { IonSlides, IonSlide, IonItem } from '@ionic/react'
 import s from './TimePanel.module.css'
 import { TimeBlock } from '../Objects/TimeBlock/TimeBlock'
 import { useSelector } from 'react-redux';
 
-const slideOpts = {
-    initialSlide: 0,
-    slidesPerView: 3,
-    spaceBetween: 10,
-    observer:true
-};
 
+export const TimePanel = ({ currentPage }) => {
 
-export const TimePanel = ({ slideIndex }) => {
+    const slideOpts = {
+        initialSlide: 0,
+        slidesPerView: 3,
+        spaceBetween: 10,
+        observer:true
+    };
 
-    const times = useSelector(state => state.SubscribeReducer.people[slideIndex].consultSchedule);
+    const times = useSelector(state => state.SubscribeReducer.people[currentPage]?.consultSchedule);
 
     return (
         <div className={s.timePanel_container}>
@@ -26,7 +26,7 @@ export const TimePanel = ({ slideIndex }) => {
             <IonSlides options={slideOpts}>
                 {times?.map((time, i) => (
                     <IonSlide key={i}>
-                        <TimeBlock time={time.time} key={i} id={time.id}/>
+                        <TimeBlock time={time.time} id={time.id}/>
                     </IonSlide>
                 ))}
             </IonSlides>

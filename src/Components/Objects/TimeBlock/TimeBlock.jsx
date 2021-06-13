@@ -7,9 +7,8 @@ export const TimeBlock = ({ time, id }) => {
 
     const dispatch = useDispatch();
     const selectedTime = useSelector(state => state.SubscribeReducer.selectedTime);
-
-    const pressHadle = () => {
-        dispatch(setSelectedTime({ time, id })) // SET INTO SELECTED
+    const pressHadle = () => { // User selects time 
+        dispatch(setSelectedTime({ time, id }))
     }
 
     //---------------/ IF SELECTED

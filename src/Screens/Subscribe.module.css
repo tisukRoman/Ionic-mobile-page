@@ -3,3 +3,10 @@
     margin-top: 2em;
     height: 100vh;
 }
+
+.preloader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}

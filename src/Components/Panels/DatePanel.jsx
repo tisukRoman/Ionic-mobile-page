@@ -5,16 +5,16 @@ import { DateBlock } from '../Objects/DateBlock/DateBlock'
 import { useSelector } from 'react-redux';
 
 
-const slideOpts = {
-    initialSlide: 0,
-    slidesPerView: 3,
-    spaceBetween: 10,
-    observer:true
-};
+export const DatePanel = ({ currentPage }) => {
 
-export const DatePanel = ({ slideIndex }) => {
+    const slideOpts = {
+        initialSlide: 0,
+        slidesPerView: 3,
+        spaceBetween: 10,
+        observer:true
+    };    
 
-    const dates = useSelector(state => state.SubscribeReducer.people[slideIndex].consultDates);
+    const dates = useSelector(state => state.SubscribeReducer.people[currentPage]?.consultDates);
 
     return (
         <div className={s.date_panel}>
@@ -38,7 +38,7 @@ export const DatePanel = ({ slideIndex }) => {
             <IonSlides options={slideOpts} onIonSlidesDidLoad={()=>console.log('It did load')}>
                 {dates?.map((date, i) => (
                     <IonSlide key={i}>
-                        <DateBlock month={date.month} dayWeek={date.dayWeek} dayDate={date.dayDate} key={i} id={date.id}/>
+                        <DateBlock month={date.month} dayWeek={date.dayWeek} dayDate={date.dayDate} id={date.id}/>
                     </IonSlide>
                 ))}
             </IonSlides>
