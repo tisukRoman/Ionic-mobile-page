@@ -12,7 +12,7 @@ export const TimeBlock = ({ time, id }) => {
     }
 
     //---------------/ IF SELECTED
-    if (id === selectedTime.id) { 
+    if (id === selectedTime?.id) { 
         return <>
             <div className={s.timeBlockActive}>
                 {time}

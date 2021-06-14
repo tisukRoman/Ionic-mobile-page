@@ -1,5 +1,5 @@
 import React from 'react'
-import { IonSlides, IonSlide, IonItem } from '@ionic/react'
+import { IonSlides, IonSlide } from '@ionic/react'
 import s from './TimePanel.module.css'
 import { TimeBlock } from '../Objects/TimeBlock/TimeBlock'
 import { useSelector } from 'react-redux';

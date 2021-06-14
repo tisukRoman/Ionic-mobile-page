@@ -15,21 +15,26 @@ export const clearSelectedData = () => ({ // Must be called after scrolling 'peo
 })
 
 export const setCurrentPage = payload => ({ // User scrolls cards of doctors
-    type: sub.SETS_CURRENT_PAGE,
+    type: sub.SET_CURRENT_PAGE,
     payload
 })
 
+export const saveDataToFB = (doctorId, dateId, timeId) => ({ // Save selected data on Firestore
+    type: sub.SAVE_DATA_ON_FB,
+    doctorId, dateId, timeId
+})
 
-// ------------// Functions below must set data from firebase
+
+// ------------// Functions below must get data from firebase
 export const setFetchedDoctor = (id) => ({
-    type: sub.SETS_CURRENT_PAGE,
+    type: sub.SET_SAVED_PAGE,
     id
 })
 export const setFetchedDate = (id) => ({
-    type: sub.SETS_CURRENT_PAGE,
+    type: sub.SET_SAVED_DATE,
     id
 })
 export const setFetchedTime = (id) => ({
-    type: sub.SETS_CURRENT_PAGE,
+    type: sub.SET_SAVED_TIME,
     id
 })

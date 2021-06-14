@@ -6,27 +6,38 @@ import { useDispatch, useSelector } from 'react-redux'
 import { clearSelectedData, setCurrentPage } from '../../Redux/Actions/SubscribeActions'
 
 
-export const PeoplePanel = () => {
-
-    const slideOpts = {
-        initialSlide: 0,
-        speed: 400,
-        observer: true
-    };
+export const PeoplePanel = ({ currentPage }) => {
 
     const dispatch = useDispatch()
     const people = useSelector(state => state.SubscribeReducer.people); // get people array
+    let slider = React.useRef();
+
+    const slideOptions = {
+        initialSlide: 0,
+        speed: 400,
+        observer: true
+    }
+
+    React.useEffect(() => {
+        const move = () => {
+            if (slider.current && currentPage) {
+                setTimeout(() => slider?.current?.slideTo(currentPage, 500).then(() => console.log('Has moved')), 500);
+            } else {
+                return;
+            }
+        };
+        move();
+    }, [slider, currentPage]);
 
     const getIndex = async (event) => { // get slide`s index
         let index = 0;
-        await event.target.getActiveIndex().then((value) => (index = value)); 
+        await event.target.getActiveIndex().then((value) => (index = value));
         dispatch(setCurrentPage(index)); // set slide`s index
-        dispatch(clearSelectedData()); // clear selected data on previous slide
     }
 
     return (
         <div>
-            <IonSlides options={slideOpts} onIonSlideDidChange={(e) => getIndex(e)}>
+            <IonSlides options={slideOptions} onIonSlideDidChange={(e) => getIndex(e)} ref={slider}>
                 {people?.map((man, i) => (
                     <IonSlide className={s.slide} key={i}>
                         <Card

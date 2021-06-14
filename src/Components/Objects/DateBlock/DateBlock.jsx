@@ -11,7 +11,7 @@ export const DateBlock = ({ dayWeek, dayDate, id, month }) => {
         dispatch(setSelectedDate({id, dayWeek, dayDate, month}));
     }
 
-    if (id === selectedDate.id) { // if selected
+    if (id === selectedDate?.id) { // if selected
         return <>
             <div className={s.DateBlock_container_active}>
                 <div className={s.day_of_week_active}>
