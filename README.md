@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+Описание работы
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Обнаружен баг: при неравной длине массивов в ionic-slides вылетает ошибка. Если использовать в качестве ключей НЕ индексы елементов массива - вылетает та же ошибка.
 
-## Available Scripts
+Ссылка на DEMO (firebase Hoisting): ionic-mindly.firebaseapp.com
 
-In the project directory, you can run:
 
-### `npm start`
+Кружком отмечены сделанные пункты: (Все задания уже выполнены)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ * При выборе даты и времени, динамически изменяется дата и время в нижней секции с кнопкой Записаться на бесплатную встречу.
+ 
+* При нажатии на кнопку Записаться на бесплатную встречу, выбранная дата и время должны быть записаны в Firestore, так чтобы при перезагрузки страницы, или если зайти из Incognito Window, то же время и день оставались (пока их снова кто то не перепишет).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* У нас 2 психолога, и у каждого разное доступное время для записи на консультацию. При выборе другого психолога доступное время (в 2х последующих горизонтальных скролл элементах меняется).
 
-### `npm test`
+* При перезагрузки страницы, психолог, дата и время которые были последний раз записаны в Firestore (при нажатии на кнопку Записаться на бесплатную встречу) выходили как дефолтные/стартовые (то есть 3 горизонтальных скролл элемента должны показывать нужного психолога, день и время).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Написать комментарии к коду.
 
-### `npm run build`
+* Разместить код в публичной репозитории на GitHub и развернуть на Firebase Hosting. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Ссылку на GitHub репозиторий сдать как результат тестового задания.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* В README file в репозитории создать ссылку на DEMO который хостится на Firebase Hosting.
