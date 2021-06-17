@@ -3,7 +3,7 @@ import { IonSlides, IonSlide } from '@ionic/react'
 import { Card } from '../Objects/Card/Card'
 import s from './PeoplePanel.module.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { clearSelectedData, setCurrentPage } from '../../Redux/Actions/SubscribeActions'
+import { setCurrentPage } from '../../Redux/Actions/SubscribeActions'
 
 
 export const PeoplePanel = ({ currentPage }) => {

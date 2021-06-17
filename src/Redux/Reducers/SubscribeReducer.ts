@@ -1,6 +1,9 @@
-import { sub } from "../Constants/SubscribeConsts"
+import { subConsts } from "../Constants/SubscribeConsts"
+import { Subscribe_t } from '../Actions/SubscribeActionsTypes'
+import { subStateType } from '../Reducers/SubscribeReducerTypes'
 
-const initialState = {
+//------------------/ INITIAL STATE
+const initialState: subStateType = {
     people: [{  ///////////////// people array
         id: 'cdjs13',
         name: 'Имя',
@@ -45,7 +48,6 @@ const initialState = {
             { id: '76gucldo', time: '01.00' },
         ]
     }],
-    currentPage: null, // index of Ionic-Slider
     selectedDate: { // date chosen by User
         id: '...',
         dayWeek: '...',
@@ -55,22 +57,24 @@ const initialState = {
     selectedTime: { // time chosen by User
         id: '...',
         time: '...'
-    }
+    },
+    currentPage: null, // index of Ionic-Slider
 }
 
-export const SubscribeReducer = (state = initialState, action) => {
+//------------------/ REDUCER
+export const SubscribeReducer = (state: subStateType = initialState, action: Subscribe_t): subStateType => {
     switch (action.type) {
-        case sub.SET_SELECTED_DATE:
+        case subConsts.SET_SELECTED_DATE:
             return {
                 ...JSON.parse(JSON.stringify(state)), // Deep copy
                 selectedDate: action.payload
             }
-        case sub.SET_SELECTED_TIME:
+        case subConsts.SET_SELECTED_TIME:
             return {
                 ...JSON.parse(JSON.stringify(state)),
                 selectedTime: action.payload
             }
-        case sub.CLEAR_SELECTED_DATA:
+        case subConsts.CLEAR_SELECTED_DATA:
             return {
                 ...JSON.parse(JSON.stringify(state)),
                 selectedDate: { // date chosen by User
@@ -84,48 +88,45 @@ export const SubscribeReducer = (state = initialState, action) => {
                     time: '...'
                 }
             }
-        case sub.SET_CURRENT_PAGE:
+        case subConsts.SET_CURRENT_PAGE:
             return {
                 ...JSON.parse(JSON.stringify(state)),
                 currentPage: action.payload
             }
-        case sub.SET_SAVED_PAGE:
+        case subConsts.SET_SAVED_PAGE:
             return {
                 ...JSON.parse(JSON.stringify(state)),
                 currentPage: findSavedPage(state.people, action.id),
+                dich: 'hello'
             }
-        case sub.SET_SAVED_DATE:
+        case subConsts.SET_SAVED_DATE:
             return {
                 ...JSON.parse(JSON.stringify(state)),
-                selectedDate: findSavedDate(state.people[state.currentPage].consultDates, action.id)
+                selectedDate: state.currentPage !== null ? findSavedDate(state.people[state.currentPage].consultDates, action.id) : null
             }
-        case sub.SET_SAVED_TIME:
+        case subConsts.SET_SAVED_TIME:
             return {
                 ...JSON.parse(JSON.stringify(state)),
-                selectedTime: findSavedTime(state.people[state.currentPage].consultSchedule, action.id)
+                selectedTime: state.currentPage !== null ? findSavedTime(state.people[state.currentPage].consultSchedule, action.id) : null
             }
         default:
             return state
     }
 }
 
-//------------------/ ADITIONAL FUNCTIONS
 
-function findSavedPage(people, savedId) { // returns page of doctor with this id
+//------------------/ ADITIONAL FUNCTIONS
+function findSavedPage(people: Array<any>, savedId: string) { // returns page index of doctor with this id
     for (let i = 0; i < people.length; i++) {
-        if (people[i].id === savedId) {
-            return i;
-        }
+        if (people[i].id === savedId) return i;
     }
 }
-
-function findSavedDate(date, savedId) { // returns object of saved date
+function findSavedDate(date: Array<any>, savedId: string) { // returns object of saved date
     for (let i = 0; i < date.length; i++) {
         if (date[i].id === savedId) return date[i];
     }
 }
-
-function findSavedTime(time, savedId) { // returns object of saved time
+function findSavedTime(time: Array<any>, savedId: string) { // returns object of saved time
     for (let i = 0; i < time.length; i++) {
         if (time[i].id === savedId) return time[i];
     }
