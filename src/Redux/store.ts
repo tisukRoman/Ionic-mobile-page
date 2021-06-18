@@ -5,4 +5,7 @@ const root = combineReducers({
     SubscribeReducer
 })
 
-export const store = createStore(root);
+type rootType = typeof root
+export type globalState_t = ReturnType<rootType>
+
+export const store = createStore(root)

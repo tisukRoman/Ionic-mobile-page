@@ -2,7 +2,12 @@ import React from 'react'
 import s from './Card.module.css'
 import no_img from '../../../Assets/manAva.png'
 
-export const Card = ({ name, time, img }) => {
+type propsType = { // Types
+    name: string 
+    time: string 
+    img: string 
+}
+export const Card: React.FC<propsType> = ({ name, time, img }) => {
     return (
         <div className={s.card_container}>
             <div className={s.name_container}>

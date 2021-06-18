@@ -2,12 +2,17 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import s from './SubscribePanel.module.css'
 import db from '../../firebase'
+import { globalState_t } from '../../Redux/store'
 
-export const SubscribePanel = ({ currentPage }) => {
 
-    const selectedDate = useSelector(state => state.SubscribeReducer.selectedDate);
-    const selectedTime = useSelector(state => state.SubscribeReducer.selectedTime);
-    const doctor = useSelector(state => state.SubscribeReducer.people[currentPage].id);
+type propsType = { // Types
+    currentPage: number 
+}
+export const SubscribePanel: React.FC<propsType> = ({ currentPage }) => {
+
+    const selectedDate = useSelector((state: globalState_t) => state.SubscribeReducer.selectedDate);
+    const selectedTime = useSelector((state: globalState_t) => state.SubscribeReducer.selectedTime);
+    const doctor = useSelector((state: globalState_t) => state.SubscribeReducer.people[currentPage].id);
 
     const renderMonth = () => { // Set month name in appropriate case (июнь -> июня. март -> марта)
         if (selectedDate) {

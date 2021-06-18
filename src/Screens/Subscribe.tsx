@@ -7,19 +7,20 @@ import s from './Subscribe.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import db from '../firebase'
 import { setFetchedDate, setFetchedDoctor, setFetchedTime } from '../Redux/Actions/SubscribeActions'
+import { globalState_t } from '../Redux/store'
 
-export const Subscribe = React.memo(() => {
 
-    const [savedData, setSavedData] = React.useState([]); // Here we have data from firebase DB
-    const currentPage = useSelector(state => state.SubscribeReducer.currentPage); // get slide index
+export const Subscribe: React.FC = React.memo(() => {
+
+    const [savedData, setSavedData] = React.useState<Array<any>>([]); // Here we have data from firebase DB
+    const currentPage = useSelector((state: globalState_t) => state.SubscribeReducer.currentPage); // get slide index
     const dispatch = useDispatch();
-    const selectedDate = useSelector(state => state.SubscribeReducer.selectedDate);
 
     React.useEffect(() => { // Fetch data from firebase db and set into Redux State 
         const fetchSavedDate = async () => { // gets data from firebase
             const response = db.collection('consultInfo'); // gets our collection
             const data = await response.get(); // gets data from collection
-            const arr = [];
+            const arr: Array<any> = [];
             data.docs.forEach(item => {
                 arr.push(item.data());
             });
@@ -46,7 +47,7 @@ export const Subscribe = React.memo(() => {
     if (currentPage === null) {
         return (
             <div className={s.container}>
-               Loading...
+                Loading...
             </div>
         )
     }

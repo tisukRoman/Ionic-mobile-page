@@ -1,18 +1,24 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSelectedTime } from '../../../Redux/Actions/SubscribeActions';
+import { globalState_t } from '../../../Redux/store';
 import s from './TimeBlock.module.css'
 
-export const TimeBlock = ({ time, id }) => {
+
+type propsType = { // Types
+    time: string
+    id: string
+}
+export const TimeBlock: React.FC<propsType> = ({ time, id }) => {
 
     const dispatch = useDispatch();
-    const selectedTime = useSelector(state => state.SubscribeReducer.selectedTime);
+    const selectedTime: propsType | undefined = useSelector((state: globalState_t) => state.SubscribeReducer.selectedTime);
     const pressHadle = () => { // User selects time 
         dispatch(setSelectedTime({ time, id }))
     }
 
     //---------------/ IF SELECTED
-    if (id === selectedTime?.id) { 
+    if (id === selectedTime?.id) {
         return <>
             <div className={s.timeBlockActive}>
                 {time}
@@ -20,7 +26,7 @@ export const TimeBlock = ({ time, id }) => {
         </>
     }
     //---------------/ IF NOT SELECTED
-    return <> 
+    return <>
         <div className={s.timeBlock} onClick={pressHadle}>
             {time}
         </div>

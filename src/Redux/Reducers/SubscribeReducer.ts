@@ -1,6 +1,6 @@
+import { subStateType } from './SubscribeReducerTypes';
 import { subConsts } from "../Constants/SubscribeConsts"
 import { Subscribe_t } from '../Actions/SubscribeActionsTypes'
-import { subStateType } from '../Reducers/SubscribeReducerTypes'
 
 //------------------/ INITIAL STATE
 const initialState: subStateType = {

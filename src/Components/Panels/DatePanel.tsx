@@ -3,18 +3,23 @@ import { IonSlides, IonSlide } from '@ionic/react'
 import s from './DatePanel.module.css'
 import { DateBlock } from '../Objects/DateBlock/DateBlock'
 import { useSelector } from 'react-redux';
+import { globalState_t } from '../../Redux/store';
 
+type propsType = { // Types
+    currentPage: number 
+}
 
-export const DatePanel = ({ currentPage }) => {
+export const DatePanel: React.FC<propsType> = ({ currentPage }) => {
 
     const slideOpts = {
         initialSlide: 0,
         slidesPerView: 3,
         spaceBetween: 10,
-        observer:true
-    };    
+        observer: true
+    };
 
-    const dates = useSelector(state => state.SubscribeReducer.people[currentPage]?.consultDates);
+    const dates = useSelector((state: globalState_t) => state.SubscribeReducer.people[currentPage].consultDates);
+
 
     return (
         <div className={s.date_panel}>
@@ -35,10 +40,10 @@ export const DatePanel = ({ currentPage }) => {
                 </div>
             </div>
 
-            <IonSlides options={slideOpts} onIonSlidesDidLoad={()=>console.log('It did load')}>
-                {dates?.map((date, i) => (
+            <IonSlides options={slideOpts} onIonSlidesDidLoad={() => console.log('It did load')}>
+                {dates.map((date, i) => (
                     <IonSlide key={i}>
-                        <DateBlock month={date.month} dayWeek={date.dayWeek} dayDate={date.dayDate} id={date.id}/>
+                        <DateBlock month={date.month} dayWeek={date.dayWeek} dayDate={date.dayDate} id={date.id} />
                     </IonSlide>
                 ))}
             </IonSlides>

@@ -1,12 +1,20 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSelectedDate } from '../../../Redux/Actions/SubscribeActions';
+import { globalState_t } from '../../../Redux/store';
 import s from './DateBlock.module.css'
 
-export const DateBlock = ({ dayWeek, dayDate, id, month }) => {
+
+type propsType = { // Types
+    dayWeek: string 
+    dayDate: string 
+    id: string 
+    month: string
+}
+export const DateBlock: React.FC<propsType> = ({ dayWeek, dayDate, id, month }) => {
 
     const dispatch = useDispatch();
-    const selectedDate = useSelector(state => state.SubscribeReducer.selectedDate); 
+    const selectedDate = useSelector((state: globalState_t) => state.SubscribeReducer.selectedDate); 
     const pressHandle = () => { // User selects Date
         dispatch(setSelectedDate({id, dayWeek, dayDate, month}));
     }
