@@ -3,3 +3,17 @@
     margin-top: 2em;
     height: 100vh;
 }
+.containerLoader{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+
+.loader{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5em;
+    height: 5em;
+}

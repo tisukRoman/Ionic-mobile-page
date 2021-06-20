@@ -1,7 +1,9 @@
-import { setCurrentPage_t, setFetchedDoctor_t } from './SubscribeActionsTypes';
+import { setCurrentPage_t, setFetchedDoctor_t, toggleLoading_t } from './SubscribeActionsTypes';
 import { subConsts } from "../Constants/SubscribeConsts"
 import { clearSelectedData_t, saveDataToFB_t, setFetchedDate_t, setFetchedTime_t, setSelectedDate_t, setSelectedTime_t } from './SubscribeActionsTypes'
-
+import { fetchSavedDate } from '../../API/API'
+import { Dispatch } from 'redux';
+import { ActionType } from './ActionType';
 //--------------------/ SUBSCRIBE ACTIONS
 
 // User chooses consult Date
@@ -22,15 +24,21 @@ export const clearSelectedData = (): clearSelectedData_t => ({
 })
 
 // User scrolls cards of doctors
-export const setCurrentPage = (payload: number): setCurrentPage_t => ({ 
+export const setCurrentPage = (payload: number): setCurrentPage_t => ({
     type: subConsts.SET_CURRENT_PAGE,
     payload
 })
 
 // Save selected data on Firestore
-export const saveDataToFB = (doctorId: string, dateId: string, timeId: string): saveDataToFB_t => ({ 
+export const saveDataToFB = (doctorId: string, dateId: string, timeId: string): saveDataToFB_t => ({
     type: subConsts.SAVE_DATA_ON_FB,
     doctorId, dateId, timeId
+})
+
+// Toggles Loading property showing or hiding preloader
+export const toggleLoading = (payload: toggleLoading_t["payload"]): toggleLoading_t => ({
+    type: subConsts.TOGGLE_LOADING,
+    payload
 })
 
 
@@ -47,3 +55,27 @@ export const setFetchedTime = (id: string): setFetchedTime_t => ({
     type: subConsts.SET_SAVED_TIME,
     id
 })
+
+
+//-----------// Thunks
+type dataType = {
+    doctorId: string
+    dateId: string
+    timeId: string
+}
+export const getDataFromDb = () => async (dispatch: Dispatch<ActionType>) => {
+    dispatch(toggleLoading(true));
+    try {
+        const data: dataType = await fetchSavedDate();
+        const { doctorId, dateId, timeId } = data;
+        dispatch(setFetchedDoctor(doctorId));
+        setTimeout(() => {
+            dispatch(setFetchedDate(dateId));
+            dispatch(setFetchedTime(timeId));
+        }, 200);
+    } catch (e) {
+        console.log(e.message)
+    } finally {
+        dispatch(toggleLoading(false));
+    }
+}

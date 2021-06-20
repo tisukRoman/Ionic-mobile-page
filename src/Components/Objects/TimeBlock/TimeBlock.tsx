@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSelectedTime } from '../../../Redux/Actions/SubscribeActions';
-import { globalState_t } from '../../../Redux/store';
+import { AppState } from '../../../Redux/store';
 import s from './TimeBlock.module.css'
 
 
@@ -12,7 +12,7 @@ type propsType = { // Types
 export const TimeBlock: React.FC<propsType> = ({ time, id }) => {
 
     const dispatch = useDispatch();
-    const selectedTime: propsType | undefined = useSelector((state: globalState_t) => state.SubscribeReducer.selectedTime);
+    const selectedTime: propsType | undefined = useSelector((state: AppState) => state.SubscribeReducer.selectedTime);
     const pressHadle = () => { // User selects time 
         dispatch(setSelectedTime({ time, id }))
     }

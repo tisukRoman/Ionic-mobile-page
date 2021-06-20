@@ -44,6 +44,11 @@ export interface setFetchedTime_t { // set Time from 'Firestore'
     id: string
 }
 
+export interface toggleLoading_t {
+    type: subConsts.TOGGLE_LOADING
+    payload: boolean
+}
+
 
 // General action type
 
@@ -51,4 +56,4 @@ export type Subscribe_t = setSelectedDate_t |
     setSelectedTime_t | clearSelectedData_t |
     setCurrentPage_t | saveDataToFB_t |
     setFetchedDoctor_t | setFetchedDate_t |
-    setFetchedTime_t
+    setFetchedTime_t | toggleLoading_t

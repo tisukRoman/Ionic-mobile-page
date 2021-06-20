@@ -3,7 +3,7 @@ import { IonSlides, IonSlide } from '@ionic/react'
 import s from './DatePanel.module.css'
 import { DateBlock } from '../Objects/DateBlock/DateBlock'
 import { useSelector } from 'react-redux';
-import { globalState_t } from '../../Redux/store';
+import { AppState } from '../../Redux/store';
 
 type propsType = { // Types
     currentPage: number 
@@ -18,7 +18,7 @@ export const DatePanel: React.FC<propsType> = ({ currentPage }) => {
         observer: true
     };
 
-    const dates = useSelector((state: globalState_t) => state.SubscribeReducer.people[currentPage].consultDates);
+    const dates = useSelector((state: AppState) => state.SubscribeReducer.people[currentPage].consultDates);
 
 
     return (

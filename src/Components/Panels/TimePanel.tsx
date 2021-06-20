@@ -3,7 +3,7 @@ import { IonSlides, IonSlide } from '@ionic/react'
 import s from './TimePanel.module.css'
 import { TimeBlock } from '../Objects/TimeBlock/TimeBlock'
 import { useSelector } from 'react-redux';
-import { globalState_t } from '../../Redux/store';
+import { AppState } from '../../Redux/store';
 
 type propsType = { // Types
     currentPage: number 
@@ -17,7 +17,7 @@ export const TimePanel: React.FC<propsType> = ({ currentPage }) => {
         observer:true
     };
 
-    const times = useSelector((state: globalState_t) => state.SubscribeReducer.people[currentPage]?.consultSchedule);
+    const times = useSelector((state: AppState) => state.SubscribeReducer.people[currentPage]?.consultSchedule);
 
     return (
         <div className={s.timePanel_container}>

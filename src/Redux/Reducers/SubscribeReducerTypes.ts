@@ -11,6 +11,7 @@ export interface subStateType { // SUBSCRIBE STATE INTERFACE
     selectedDate: { id: string, dayWeek: string, dayDate: string, month: string }
     selectedTime: { id: string, time: string }
     currentPage: number | null
+    isLoading: boolean
 }
 
 

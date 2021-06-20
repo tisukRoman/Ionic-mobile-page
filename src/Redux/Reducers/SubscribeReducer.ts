@@ -59,6 +59,7 @@ const initialState: subStateType = {
         time: '...'
     },
     currentPage: null, // index of Ionic-Slider
+    isLoading: false
 }
 
 //------------------/ REDUCER
@@ -108,6 +109,11 @@ export const SubscribeReducer = (state: subStateType = initialState, action: Sub
             return {
                 ...JSON.parse(JSON.stringify(state)),
                 selectedTime: state.currentPage !== null ? findSavedTime(state.people[state.currentPage].consultSchedule, action.id) : null
+            }
+        case subConsts.TOGGLE_LOADING:
+            return {
+                ...JSON.parse(JSON.stringify(state)),
+                isLoading: action.payload
             }
         default:
             return state

@@ -7,4 +7,5 @@ export enum subConsts {
     SET_SAVED_DATE = 'subscribeReducer/SET_SAVED_DATE',
     SET_SAVED_TIME = 'subscribeReducer/SET_SAVED_TIME',
     SAVE_DATA_ON_FB = 'subscribeReducer/SAVE_DATA_ON_FB',
+    TOGGLE_LOADING = 'subscribeReducer/TOGGLE_LOADING'
 }

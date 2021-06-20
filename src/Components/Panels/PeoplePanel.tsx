@@ -4,7 +4,7 @@ import { Card } from '../Objects/Card/Card'
 import s from './PeoplePanel.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentPage } from '../../Redux/Actions/SubscribeActions'
-import { globalState_t } from '../../Redux/store'
+import { AppState } from '../../Redux/store'
 
 
 type propsType = { // Types
@@ -14,8 +14,8 @@ type propsType = { // Types
 export const PeoplePanel: React.FC<propsType> = ({ currentPage }) => {
 
     const dispatch = useDispatch()
-    const people = useSelector((state: globalState_t) => state.SubscribeReducer.people); // get people array
-    let slider = React.useRef<HTMLIonSlidesElement | null>();
+    const people = useSelector((state: AppState) => state.SubscribeReducer.people); // get people array
+    let slider = React.useRef<HTMLIonSlidesElement | null>(null);
 
     const slideOptions = {
         initialSlide: 0,
@@ -28,8 +28,8 @@ export const PeoplePanel: React.FC<propsType> = ({ currentPage }) => {
         const move = () => {
             if (currentPage !== null) {
                 setTimeout(() => {
-                    const sliderElem: HTMLIonSlidesElement | undefined | null = slider.current;
-                    if (sliderElem !== undefined && sliderElem !== null)
+                    const sliderElem: HTMLIonSlidesElement | null = slider.current;
+                    if (sliderElem !== null)
                         sliderElem.slideTo(currentPage, 500);
                 }, 500);
             }
