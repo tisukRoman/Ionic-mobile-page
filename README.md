@@ -1,24 +1,17 @@
-Описание работы
-
-Обнаружен баг: при неравной длине массивов в ionic-slides вылетает ошибка. Если использовать в качестве ключей НЕ индексы елементов массива - вылетает та же ошибка.
-
-Ссылка на DEMO (firebase Hoisting): ionic-mindly.firebaseapp.com
+DESCRIPTION
 
 
-Кружком отмечены сделанные пункты: (Все задания уже выполнены)
+FIREBASE HOISTING -> ionic-mindly.firebaseapp.com
 
- * При выборе даты и времени, динамически изменяется дата и время в нижней секции с кнопкой Записаться на бесплатную встречу.
+
+* When you select the date or the time, it changes dynamically at the lower sections with the additional button.
  
-* При нажатии на кнопку Записаться на бесплатную встречу, выбранная дата и время должны быть записаны в Firestore, так чтобы при перезагрузки страницы, или если зайти из Incognito Window, то же время и день оставались (пока их снова кто то не перепишет).
+* When you click on the Sign up for a free meeting button, the selected date and time will be saved in Firestore, so that when you reload the page, or if you go from the Incognito Window, the same time and day remain (until someone rewrites them again).
 
-* У нас 2 психолога, и у каждого разное доступное время для записи на консультацию. При выборе другого психолога доступное время (в 2х последующих горизонтальных скролл элементах меняется).
+* We have 3 psychologists, and each of them has a different available schedule for consultation. When choosing another psychologist, the data in other two sliders changes.
 
-* При перезагрузки страницы, психолог, дата и время которые были последний раз записаны в Firestore (при нажатии на кнопку Записаться на бесплатную встречу) выходили как дефолтные/стартовые (то есть 3 горизонтальных скролл элемента должны показывать нужного психолога, день и время).
+* When the page was reloaded, the psychologist, the date and the time that were last recorded in the Firestore (when you click on the Sign up for a free meeting button) came out as default / starting (that is, 3 horizontal scrolling elements show the required psychologist, day and time).
 
-* Написать комментарии к коду.
+* The mini project is written with TypeScript.
 
-* Разместить код в публичной репозитории на GitHub и развернуть на Firebase Hosting. 
 
-* Ссылку на GitHub репозиторий сдать как результат тестового задания.
-
-* В README file в репозитории создать ссылку на DEMO который хостится на Firebase Hosting.
