@@ -1,7 +1,8 @@
 DESCRIPTION
 
 
-FIREBASE HOISTING -> ionic-mindly.firebaseapp.com
+FIREBASE HOISTING -> ionic-mindly.firebaseapp.com 
+FIREBASE HOISTING -> ionic-mindly.web.app
 
 
 * When you select the date or the time, it changes dynamically at the lower sections with the additional button.
