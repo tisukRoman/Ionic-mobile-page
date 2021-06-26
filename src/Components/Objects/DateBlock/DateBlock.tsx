@@ -6,17 +6,17 @@ import s from './DateBlock.module.css'
 
 
 type propsType = { // Types
-    dayWeek: string 
-    dayDate: string 
-    id: string 
+    dayWeek: string
+    dayDate: string
+    id: string
     month: string
 }
 export const DateBlock: React.FC<propsType> = ({ dayWeek, dayDate, id, month }) => {
 
     const dispatch = useDispatch();
-    const selectedDate = useSelector((state: AppState) => state.SubscribeReducer.selectedDate); 
-    const pressHandle = () => { // User selects Date
-        dispatch(setSelectedDate({id, dayWeek, dayDate, month}));
+    const selectedDate = useSelector((state: AppState) => state.SubscribeReducer.selectedDate);
+    const pressHandle = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => { // User selects Date
+        dispatch(setSelectedDate({ id, dayWeek, dayDate, month }));
     }
 
     if (id === selectedDate?.id) { // if selected
@@ -32,7 +32,7 @@ export const DateBlock: React.FC<propsType> = ({ dayWeek, dayDate, id, month }) 
         </>
     }
     // if not selected
-    return <> 
+    return <>
         <div className={s.DateBlock_container} onClick={pressHandle}>
             <div className={s.day_of_week}>
                 {dayWeek}

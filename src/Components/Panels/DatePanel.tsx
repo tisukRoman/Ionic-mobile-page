@@ -6,20 +6,41 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../Redux/store';
 
 type propsType = { // Types
-    currentPage: number 
+    currentPage: number
+}
+type slideOptsType = {
+    initialSlide: number,
+    slidesPerView: number,
+    spaceBetween: number,
+    observer: boolean
 }
 
 export const DatePanel: React.FC<propsType> = ({ currentPage }) => {
 
-    const slideOpts = {
+    const slideOpts: slideOptsType = {
         initialSlide: 0,
         slidesPerView: 3,
         spaceBetween: 10,
         observer: true
     };
 
+    let slider = React.useRef<HTMLIonSlidesElement | null>(null);
     const dates = useSelector((state: AppState) => state.SubscribeReducer.people[currentPage].consultDates);
+    const index = useSelector((state: AppState) => state.SubscribeReducer.selectedDate.index); // index of slide
 
+    //--------------------------// Setting Slider on Saved Slide 
+    React.useEffect(() => {
+        const move = (): void => {
+            if (index !== undefined) {
+                const sliderElem: HTMLIonSlidesElement | null = slider.current;
+                if (sliderElem !== null) {
+                    sliderElem.slideTo(index, 1000);
+                }
+            }
+        };
+        move();
+    }, [slider, index]);
+    //--------------------------\\
 
     return (
         <div className={s.date_panel}>
@@ -40,7 +61,7 @@ export const DatePanel: React.FC<propsType> = ({ currentPage }) => {
                 </div>
             </div>
 
-            <IonSlides options={slideOpts} onIonSlidesDidLoad={() => console.log('It did load')}>
+            <IonSlides options={slideOpts} ref={(instance) => slider.current = instance}>
                 {dates.map((date, i) => (
                     <IonSlide key={i}>
                         <DateBlock month={date.month} dayWeek={date.dayWeek} dayDate={date.dayDate} id={date.id} />

@@ -24,8 +24,16 @@
     height: 6em;
     width: 50%;
     border: 1px solid grey;
+    overflow: hidden;
     border-radius: 0.5em;
 }
+.photo_container img{
+    object-fit: cover;
+    width: 320px;
+    height: 180px;
+    padding: 0.05px;
+}
+
 .text_container{
     height: 6em;
     width: 50%;

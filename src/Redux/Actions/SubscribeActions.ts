@@ -44,7 +44,7 @@ export const toggleLoading = (payload: toggleLoading_t["payload"]): toggleLoadin
 
 // ------------// Functions below must get data from firebase
 export const setFetchedDoctor = (id: string): setFetchedDoctor_t => ({
-    type: subConsts.SET_SAVED_PAGE,
+    type: subConsts.SET_SAVED_PAGE_INDEX,
     id
 })
 export const setFetchedDate = (id: string): setFetchedDate_t => ({
@@ -72,7 +72,7 @@ export const getDataFromDb = () => async (dispatch: Dispatch<ActionType>) => {
         setTimeout(() => {
             dispatch(setFetchedDate(dateId));
             dispatch(setFetchedTime(timeId));
-        }, 200);
+        }, 0);
     } catch (e) {
         console.log(e.message)
     } finally {

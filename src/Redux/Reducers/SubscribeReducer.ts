@@ -8,7 +8,7 @@ const initialState: subStateType = {
         id: 'cdjs13',
         name: 'Имя',
         consultDuration: '40', //minutes
-        img: 'http://simpleicon.com/wp-content/uploads/user-5.png',
+        img: 'https://www.dmarge.com/wp-content/uploads/2021/01/dwayne-the-rock-.jpg',
         consultDates: [
             { id: 'e9vh9e', dayWeek: 'Ср', dayDate: '26', month: 'май' },
             { id: 'wre434', dayWeek: 'Чт', dayDate: '27', month: 'май' },
@@ -28,9 +28,9 @@ const initialState: subStateType = {
     },
     {
         id: 'cdjs12',
-        name: 'Елена Шимановская',
+        name: 'Елена Шпаковская',
         consultDuration: '50', //minutes
-        img: 'https://www.vhv.rs/dpng/d/421-4212919_female-user-female-user-icon-png-transparent-png.png',
+        img: 'https://avada.theme-fusion.com/wp-content/uploads/2019/07/person_sample_2.jpg',
         consultDates: [
             { id: 'siubds1', dayWeek: 'Ср', dayDate: '1', month: 'июнь' },
             { id: 'fbgvfrf', dayWeek: 'Чт', dayDate: '2', month: 'июнь' },
@@ -47,18 +47,42 @@ const initialState: subStateType = {
             { id: '3dmpok9c', time: '11.30' },
             { id: '76gucldo', time: '01.00' },
         ]
-    }],
+    },
+    {
+        id: 'fed4rff',
+        name: 'Роман Тищук',
+        consultDuration: '5', //minutes
+        img: 'https://github.com/tisukRoman/my-resume/blob/main/profile.jpg?raw=true',
+        consultDates: [
+            { id: 'fgbit7r9', dayWeek: 'Пт', dayDate: '1', month: 'март' },
+            { id: 'y0jv9fmp', dayWeek: 'Сб', dayDate: '2', month: 'март' },
+            { id: 't9hfdoivm', dayWeek: 'Пн', dayDate: '3', month: 'март' },
+            { id: 't8h9jfd4m', dayWeek: 'Вт', dayDate: '4', month: 'март' },
+            { id: 'freiih97f', dayWeek: 'Ср', dayDate: '6', month: 'март' },
+            { id: '0568gkf;df', dayWeek: 'Чт', dayDate: '7', month: 'март' },
+        ],
+        consultSchedule: [
+            { id: '4568gfyss', time: '12.00' },
+            { id: 'rehf98h44', time: '13.00' },
+            { id: '937gh87hf', time: '14.30' },
+            { id: 'eu5gh9dri', time: '15.00' },
+            { id: '94jyh89jd', time: '15.30' },
+            { id: '97guifdls', time: '16.00' },
+        ]
+    },],
     selectedDate: { // date chosen by User
         id: '...',
+        index: 0,
         dayWeek: '...',
         dayDate: '...',
         month: ''
     },
     selectedTime: { // time chosen by User
         id: '...',
+        index: 0,
         time: '...'
     },
-    currentPage: null, // index of Ionic-Slider
+    currentPage: 0, // index of Ionic-Slider
     isLoading: false
 }
 
@@ -68,7 +92,13 @@ export const SubscribeReducer = (state: subStateType = initialState, action: Sub
         case subConsts.SET_SELECTED_DATE:
             return {
                 ...JSON.parse(JSON.stringify(state)), // Deep copy
-                selectedDate: action.payload
+                selectedDate: {
+                    id: action.payload.id,
+                    index: findSavedItem(state.people[state.currentPage].consultDates, action.payload.id),
+                    dayWeek: action.payload.dayWeek,
+                    dayDate: action.payload.dayDate,
+                    month: action.payload.month,
+                }
             }
         case subConsts.SET_SELECTED_TIME:
             return {
@@ -94,21 +124,32 @@ export const SubscribeReducer = (state: subStateType = initialState, action: Sub
                 ...JSON.parse(JSON.stringify(state)),
                 currentPage: action.payload
             }
-        case subConsts.SET_SAVED_PAGE:
+        case subConsts.SET_SAVED_PAGE_INDEX:
             return {
                 ...JSON.parse(JSON.stringify(state)),
-                currentPage: findSavedPage(state.people, action.id),
-                dich: 'hello'
+                currentPage: findSavedItem(state.people, action.id),
             }
         case subConsts.SET_SAVED_DATE:
+            const dateObj = findSavedDate(state.people[state.currentPage].consultDates, action.id);
             return {
                 ...JSON.parse(JSON.stringify(state)),
-                selectedDate: state.currentPage !== null ? findSavedDate(state.people[state.currentPage].consultDates, action.id) : null
+                selectedDate: {
+                    id: dateObj.id,
+                    index: findSavedItem(state.people[state.currentPage].consultDates, action.id),
+                    dayWeek: dateObj.dayWeek,
+                    dayDate: dateObj.dayDate,
+                    month: dateObj.month,
+                }
             }
         case subConsts.SET_SAVED_TIME:
+            const timeObj = findSavedTime(state.people[state.currentPage].consultSchedule, action.id);
             return {
                 ...JSON.parse(JSON.stringify(state)),
-                selectedTime: state.currentPage !== null ? findSavedTime(state.people[state.currentPage].consultSchedule, action.id) : null
+                selectedTime: {
+                    id: timeObj.id,
+                    index: findSavedItem(state.people[state.currentPage].consultSchedule, action.id),
+                    time: timeObj.time,
+                }
             }
         case subConsts.TOGGLE_LOADING:
             return {
@@ -122,9 +163,9 @@ export const SubscribeReducer = (state: subStateType = initialState, action: Sub
 
 
 //------------------/ ADITIONAL FUNCTIONS
-function findSavedPage(people: Array<any>, savedId: string) { // returns page index of doctor with this id
-    for (let i = 0; i < people.length; i++) {
-        if (people[i].id === savedId) return i;
+function findSavedItem(items: Array<any>, savedId: string) { // returns page index of doctor with this id
+    for (let i = 0; i < items.length; i++) {
+        if (items[i].id === savedId) return i;
     }
 }
 function findSavedDate(date: Array<any>, savedId: string) { // returns object of saved date

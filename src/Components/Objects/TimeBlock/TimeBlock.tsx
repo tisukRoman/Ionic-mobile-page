@@ -13,7 +13,7 @@ export const TimeBlock: React.FC<propsType> = ({ time, id }) => {
 
     const dispatch = useDispatch();
     const selectedTime: propsType | undefined = useSelector((state: AppState) => state.SubscribeReducer.selectedTime);
-    const pressHadle = () => { // User selects time 
+    const pressHadle = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => { // User selects time 
         dispatch(setSelectedTime({ time, id }))
     }
 

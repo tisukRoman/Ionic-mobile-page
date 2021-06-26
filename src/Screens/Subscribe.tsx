@@ -20,7 +20,7 @@ export const Subscribe: React.FC = React.memo(() => {
     }, [dispatch]);
 
 
-    if (currentPage === null || isLoading) {
+    if (isLoading) {
         return (
             <div className={s.containerLoader}>
                 <div><IonSpinner className={s.loader} /></div>

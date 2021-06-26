@@ -6,7 +6,7 @@ import { AppState } from '../../Redux/store'
 
 
 type propsType = { // Types
-    currentPage: number 
+    currentPage: number
 }
 export const SubscribePanel: React.FC<propsType> = ({ currentPage }) => {
 
@@ -14,7 +14,8 @@ export const SubscribePanel: React.FC<propsType> = ({ currentPage }) => {
     const selectedTime = useSelector((state: AppState) => state.SubscribeReducer.selectedTime);
     const doctor = useSelector((state: AppState) => state.SubscribeReducer.people[currentPage].id);
 
-    const renderMonth = () => { // Set month name in appropriate case (июнь -> июня. март -> марта)
+    const renderMonth = (): string => {
+        // Set month name in appropriate case (июнь -> июня. март -> марта) 
         if (selectedDate) {
             let arrMonth = selectedDate.month.split('');
             let lastLetter = arrMonth.pop();
@@ -32,7 +33,8 @@ export const SubscribePanel: React.FC<propsType> = ({ currentPage }) => {
             return '';
         }
     }
-    const onSaveSubscribeData = () => { // Save selected Data on firestore
+    const onSaveSubscribeData = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => { 
+        // Save selected Data on firestore
         db.collection('consultInfo').doc('user').set({ doctorId: doctor, dateId: selectedDate.id, timeId: selectedTime.id })
     }
 

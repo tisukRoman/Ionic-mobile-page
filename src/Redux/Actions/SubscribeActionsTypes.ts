@@ -30,7 +30,7 @@ export interface saveDataToFB_t { // save Data to 'Firestore' DB
 }
 
 export interface setFetchedDoctor_t { // set Doctor from 'Firestore'
-    type: subConsts.SET_SAVED_PAGE
+    type: subConsts.SET_SAVED_PAGE_INDEX
     id: string
 }
 
